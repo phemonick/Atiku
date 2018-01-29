@@ -38,7 +38,7 @@ const myDrawer = DrawerNavigator({
 
 const RootNavigation = StackNavigator({
     Home: {
-        screen: myDrawer,
+        screen: App,
         
     },
     Main:{

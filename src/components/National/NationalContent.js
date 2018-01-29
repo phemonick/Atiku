@@ -76,6 +76,9 @@ const styles = StyleSheet.create({
         borderColor: '#95a5a6',
         width: 100+ '%',
         marginBottom: 20,
-        marginTop: 20
+        marginTop: 20,
+        textAlignVertical: 'top',
+        padding: 10,
+        color: '#BDBDBD'
     }
 })
