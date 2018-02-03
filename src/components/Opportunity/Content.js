@@ -1,13 +1,56 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Picker, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, Picker, TouchableOpacity, ToastAndroid } from 'react-native'
+import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 
 export default class Content extends Component{
     
     constructor(){
         super()
         this.state = {
-            jobs: ''
+            jobs: '',
+            choosen: false,
+            filePath: ''
         }
+    }
+    
+    pickFIle(){
+        DocumentPicker.show({
+            filetype: [DocumentPickerUtil.allFiles()],
+          },(error,res) => {
+            // Android
+            ToastAndroid.showWithGravity(
+                'File has been uploaded',
+                ToastAndroid.SHORT,
+                ToastAndroid.CENTER
+                
+              );
+              const split = res.uri.split('/');
+            const name = split.pop();
+            const inbox = split.pop();
+              this.setState({
+                choosen: true,
+                filePath: res.uri
+            })
+              
+            console.log(
+               res.uri,
+               res.type, // mime type
+               res.fileName,
+               res.fileSize
+            );
+            console.log({split: split, name: name, inbox: inbox})
+          });
+      
+      // iPad
+    //   const {pageX, pageY} = event.nativeEvent;
+      
+    //   DocumentPicker.show({
+    //     top: pageY,
+    //     left: pageX,
+    //     filetype: ['public.allFiles'],
+    //   }, (error, url) => {
+    //     alert(url);
+    //   });
     }
 
     render(){
@@ -39,10 +82,10 @@ export default class Content extends Component{
                             
                             <View style={styles.file} >
                                 <Text> File :</Text>
-                                <TouchableOpacity style = {styles.chooseF} >
+                                <TouchableOpacity style = {styles.chooseF} onPress={this.pickFIle.bind(this)} >
                                     <Text> Choose File  </Text>
                                 </TouchableOpacity>
-                                <Text> No file chosen </Text>
+                                <Text> {this.state.choosen? 'file uploaded': 'No file Chosen'} </Text>
                             </View>
                             <TouchableOpacity style={styles.submitCv}>
                                 <Text style={styles.submitCvT}> Submit CV </Text>
