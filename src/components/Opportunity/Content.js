@@ -9,6 +9,7 @@ export default class Content extends Component{
         this.state = {
             jobs: '',
             choosen: false,
+            choosenb: false,
             filePath: ''
         }
     }
@@ -18,6 +19,13 @@ export default class Content extends Component{
             filetype: [DocumentPickerUtil.allFiles()],
           },(error,res) => {
             // Android
+            if(error){
+                console.log(error)
+                this.setState({
+                    choosen: false
+                })
+                return null
+            }
             ToastAndroid.showWithGravity(
                 'File has been uploaded',
                 ToastAndroid.SHORT,
@@ -85,7 +93,7 @@ export default class Content extends Component{
                                 <TouchableOpacity style = {styles.chooseF} onPress={this.pickFIle.bind(this)} >
                                     <Text> Choose File  </Text>
                                 </TouchableOpacity>
-                                <Text> {this.state.choosen? 'file uploaded': 'No file Chosen'} </Text>
+                                <Text> {this.state.choosen? 'file selected': 'No file Selected'} </Text>
                             </View>
                             <TouchableOpacity style={styles.submitCv}>
                                 <Text style={styles.submitCvT}> Submit CV </Text>
@@ -104,10 +112,10 @@ export default class Content extends Component{
                             <Text> Submit Your Idea </Text>
                             <View style={styles.file} >
                                 <Text> File : </Text>
-                                <TouchableOpacity style = {styles.chooseF} >
+                                <TouchableOpacity onPress={this.pickFIle.bind(this)} style = {styles.chooseF} >
                                     <Text> Choose File  </Text>
                                 </TouchableOpacity>
-                                <Text> No file chosen </Text>
+                                <Text>{this.state.choosenb? 'file selected': 'No file Selected'} </Text>
                             </View>
                             <TouchableOpacity style={styles.submitCv}>
                                 <Text style={styles.submitCvT}> Submit Idea </Text>

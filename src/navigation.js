@@ -15,7 +15,9 @@ import Home from './components/Home/Home'
 import VotersGuide from './components/VotersGuide/VotersGuide'
 import Canvas from './components/Canvas/Home'
 import Promise from './components/Promise/Promise';
-import Menu from './Menu'
+import Menu from './Menu';
+import Splash from './components/Splash'
+import Chat from './components/Chat'
 
 
 const { width, height } = Dimensions.get('screen');
@@ -38,14 +40,20 @@ const myDrawer = DrawerNavigator({
 
 const RootNavigation = StackNavigator({
     Home: {
-        screen: App,
+        screen: Splash,
         
+    },
+    App: {
+        screen: App
     },
     Main:{
     screen: Home
     },
     Rate: {
         screen: Rate,
+    },
+    Chat: {
+        screen: Chat
     },
     SignIn: {
         screen: SignIn

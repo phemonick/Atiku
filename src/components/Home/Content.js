@@ -28,7 +28,7 @@ export default class Content extends Component{
                             <Image style = {styles.img} source = {require('../../logo/icons-17.png')} />
                             <Text style = {styles.voteInst} > National Issues </Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>this.props.navigate('DrawerOpen')}  style= {[styles.imgContainer, styles.imgColor]} >
+                        <TouchableOpacity onPress={()=>this.props.navigate('Chat')}  style= {[styles.imgContainer, styles.imgColor]} >
                             <Image style = {styles.img} source = {require('../../logo/icons-18.png')} />
                             <Text style = {styles.voteInst} > Chat with Atiku </Text>
                         </TouchableOpacity >
